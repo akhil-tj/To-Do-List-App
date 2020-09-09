@@ -10,9 +10,11 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        print('Hello World');
+      },
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(8),
         padding: EdgeInsets.all(20),
         height: cardSize,
         width: cardSize,
@@ -32,7 +34,7 @@ class ProductCard extends StatelessWidget {
           children: [
             Icon(
               myIcon,
-              size: 40,
+              size: 32,
               color: Colors.blue,
             ),
             Column(
