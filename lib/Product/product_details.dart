@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/Screens/product_info.dart';
 
 class ProductCard extends StatelessWidget {
   final IconData myIcon;
@@ -11,7 +12,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('Hello World');
+        Navigator.pushNamed(context, ProductInformation.productInfoRoute);
       },
       child: Container(
         margin: EdgeInsets.all(8),
@@ -34,7 +35,7 @@ class ProductCard extends StatelessWidget {
           children: [
             Icon(
               myIcon,
-              size: 32,
+              size: 30,
               color: Colors.blue,
             ),
             Column(
@@ -42,7 +43,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   heading,
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 22),
                 ),
                 SizedBox(
                   height: 4,
