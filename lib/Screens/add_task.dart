@@ -16,7 +16,7 @@ class AddTask extends StatelessWidget {
                   children: [
                     NewTaskAppBar(),
                     SizedBox(
-                      height: 24,
+                      height: 56,
                     ),
                     TextField(
                       maxLength: 20,
@@ -44,7 +44,7 @@ class AddTask extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('Category');
+                        Navigator.pushNamed(context, '/cat');
                       },
                       child: Row(
                         children: [

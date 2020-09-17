@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/Home/home_page.dart';
 import 'package:to_do/Screens/add_task.dart';
+import 'package:to_do/Screens/categories.dart';
 import 'package:to_do/Screens/product_info.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductInformation.productInfoRoute: (context) => ProductInformation(),
         AddTask.addTaskRoute: (context) => AddTask(),
+        '/cat': (context) => CategoriesList(),
       },
     );
   }

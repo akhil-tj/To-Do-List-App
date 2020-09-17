@@ -4,6 +4,7 @@ import 'package:to_do/Product/product_details.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_do/Screens/add_task.dart';
+import 'package:to_do/Screens/product_info.dart';
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
@@ -27,11 +28,58 @@ class HomePage extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              margin: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    bottom: 12.0,
+                    left: 16.0,
+                    child: Text(
+                      "Hello there,",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+                leading: Icon(Icons.add_box),
+                title: Text('Add Task'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, AddTask.addTaskRoute);
+                }),
             ListTile(
                 leading: Icon(Icons.settings),
-                title: Text('Item 1'),
+                title: Text('Settings'),
                 onTap: () {
-                  print('Item 1');
+                  print('Settings');
+                }),
+            ListTile(
+                leading: Icon(Icons.sms_failed),
+                title: Text('Send Feedback'),
+                onTap: () {
+                  print('Send Feedback');
+                }),
+            ListTile(
+                leading: Icon(Icons.star),
+                title: Text('Rate Us'),
+                onTap: () {
+                  print('Rate Us');
+                }),
+            ListTile(
+                leading: Icon(Icons.power_settings_new),
+                title: Text('Exit'),
+                onTap: () {
+                  print('Exit');
                 }),
           ],
         ),
@@ -101,10 +149,21 @@ class HomePage extends StatelessWidget {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
-        return ProductCard(
-          myIcon: productList[index].myIcon,
-          no: productList[index].no,
-          heading: productList[index].heading,
+        return GestureDetector(
+          onTap: () {
+            Map arguments = {
+              'myIcon': productList[index].myIcon,
+              'heading': productList[index].heading,
+              'no': productList[index].no
+            };
+            Navigator.pushNamed(context, ProductInformation.productInfoRoute,
+                arguments: arguments);
+          },
+          child: ProductCard(
+            myIcon: productList[index].myIcon,
+            no: productList[index].no,
+            heading: productList[index].heading,
+          ),
         );
       },
     );

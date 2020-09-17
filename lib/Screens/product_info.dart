@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class ProductInformation extends StatelessWidget {
   static const productInfoRoute = '/productInformation';
+
   @override
   Widget build(BuildContext context) {
+    Map argu = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SafeArea(
@@ -13,7 +15,7 @@ class ProductInformation extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAppBar(),
-            ProductDecoy(),
+            productDecoy(argu),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -96,6 +98,39 @@ class ProductInformation extends StatelessWidget {
     );
   }
 
+  Padding productDecoy(Map argu) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 22,
+            child: Icon(
+              argu['myIcon'],
+              size: 26,
+              color: Colors.blue,
+            ),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Text(
+            argu['heading'],
+            style: TextStyle(
+                fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          Text(
+            "${argu['no']} Tasks",
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
   ListView listViewBuilder() {
     return ListView.builder(
       shrinkWrap: true,
@@ -125,42 +160,6 @@ class ProductInformation extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class ProductDecoy extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 22,
-            child: Icon(
-              FeatherIcons.clipboard,
-              size: 26,
-              color: Colors.blue,
-            ),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            'All',
-            style: TextStyle(
-                fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          Text(
-            '24 Tasks',
-            style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white),
-          ),
-        ],
-      ),
     );
   }
 }
